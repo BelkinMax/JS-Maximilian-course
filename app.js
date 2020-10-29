@@ -26,6 +26,15 @@ let pers = {name: 'Max'};
 const persns = new WeakSet();
 persns.add(pers);
 
-person = null;
+//pers = null;
 
 console.log(persns)
+
+// WEAK MAP
+
+const persData = new WeakMap();
+persData.set(pers, 'Some info');
+
+pers = null;
+
+console.log(persData)
