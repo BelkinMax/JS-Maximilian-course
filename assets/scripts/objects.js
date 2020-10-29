@@ -9,4 +9,10 @@ const person = {
   },
 };
 
-person.greet();
+// add property
+person.isAdmin = true;
+
+// delete property
+delete person.age;
+
+console.log(person)
