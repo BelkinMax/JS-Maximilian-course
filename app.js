@@ -19,3 +19,13 @@ console.log(personData.get(person1));
 for(const entry of personData) {
   console.log(entry)
 }
+
+// WEAK SET
+
+let pers = {name: 'Max'};
+const persns = new WeakSet();
+persns.add(pers);
+
+person = null;
+
+console.log(persns)
