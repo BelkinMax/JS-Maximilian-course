@@ -13,3 +13,26 @@ const taxAdjPrices = prices.map((price, idx, prices) => {
 
 console.log(prices);
 console.log(taxAdjPrices);
+
+const sortedPrices = prices.sort((a, b) => {
+  if (a > b) {
+    return -1;
+  } else if (a === b) {
+    return 0;
+  } else {
+    return 1;
+  }
+});
+console.log(sortedPrices);
+
+const filteredArr = prices.filter((price, idx, prices) => {
+  return price > 10;
+});
+console.log(filteredArr);
+
+// REDUCE
+const sum = filteredArr.reduce((prev, cur, curIdx, array) => {
+  return prev + cur;
+}, 0)
+
+console.log(sum)
