@@ -1,3 +1,9 @@
+:root {
+  --basic-color: #006eff;
+  --hover-color: #001aff;
+  --headings: #ff0062;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -28,16 +34,16 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #ff0062;
+  border-color: var(--basic-color);
 }
 
 button {
   font: inherit;
-  border: 1px solid #ff0062;
+  border: 1px solid var(--basic-color);
   color: white;
   padding: 1rem 2rem;
   border-radius: 5px;
-  background: #ff0062;
+  background: var(--basic-color);
   cursor: pointer;
 }
 
@@ -47,8 +53,8 @@ button:focus {
 
 button:hover,
 button:active {
-  background: #ff3482;
-  border-color: #ff3482;
+  background: var(--hover-color);
+  border-color: var(--hover-color);
 }
 
 .card {
@@ -68,7 +74,7 @@ button:active {
 #user-input,
 #movie-list,
 #filter {
-  width: 50rem;
+  width: 35rem;
   max-width: 90%;
   margin: 2rem auto;
 }
@@ -84,27 +90,24 @@ button:active {
 }
 
 #movie-list li {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
   margin: 1rem;
 }
 
 #movie-list li h2 {
-  color: #ff0062;
+  color: var(--headings);
   font-weight: bold;
   font-size: 1.5rem;
   text-transform: capitalize;
 }
 
-#movie-list li h5 {
-  color: black;
+#movie-list li span {
   font-weight: bold;
-  font-size: 1rem;
-  text-transform: capitalize;
-}
-
-#movie-list li input {
-  display: none;
 }
 
 #movie-list li button {
-  padding: .2rem 2rem;
+  padding: .5rem 2rem;
+  margin: auto 2rem;
 }

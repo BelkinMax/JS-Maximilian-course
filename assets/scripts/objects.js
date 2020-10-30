@@ -47,9 +47,10 @@ const renderMovies = function (id, title, addTitle, addValue) {
   const movieEl = document.createElement("li");
   movieEl.setAttribute("id", `${id}`);
   movieEl.innerHTML = `
-  <h2>${title}</h2>
-  <h5>${addTitle}</h5>
-  <p>${addValue}</p>
+  <div>
+    <h2>${title}</h2>
+    <p><span>${addTitle}: </span>${addValue}</p>
+  </div>
   <button onclick="removeItem(${id})">Delete</button>
   `;
   movieList.prepend(movieEl);
@@ -180,3 +181,4 @@ reRender(movies);
 /* -------------------------------------------------------------------------- */
 
 // 1. Only numbers Extra Info (title) and Extra Info (value) doesnt work.
+// 2. Reset sorts items from oldest to newest
