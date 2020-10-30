@@ -159,3 +159,10 @@ resetBtn.addEventListener("click", () => {
 
 // Basic reset
 reRender(movies);
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    BUGS                                    */
+/* -------------------------------------------------------------------------- */
+
+// 1. Only numbers Extra Info (title) and Extra Info (value) doesnt work.
