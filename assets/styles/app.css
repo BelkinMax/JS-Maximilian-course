@@ -85,7 +85,26 @@ button:active {
 
 #movie-list li {
   margin: 1rem;
+}
+
+#movie-list li h2 {
   color: #ff0062;
   font-weight: bold;
   font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+#movie-list li h5 {
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+#movie-list li input {
+  display: none;
+}
+
+#movie-list li button {
+  padding: .2rem 2rem;
 }
