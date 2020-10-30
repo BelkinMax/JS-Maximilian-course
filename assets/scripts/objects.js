@@ -11,10 +11,20 @@ const userInputExtraName = document.getElementById("extra-name");
 const userInputExtraValue = document.getElementById("extra-value");
 
 // Movies container
-const movies = [];
+let movies;
+if (!localStorage.getItem("myMovies")) {
+  movies = [];
+} else {
+  movies = JSON.parse(localStorage.getItem('myMovies'));
+}
 const movieList = document.getElementById("movie-list");
 
 /* -------------------------------- FUNCTIONS ------------------------------- */
+
+// Save to local storage
+const saveToLS = function (arr) {
+  localStorage.setItem("myMovies", JSON.stringify(arr));
+};
 
 // Clear inputs
 const clearInputs = function () {
@@ -54,6 +64,9 @@ const removeItem = function (id) {
   // Remove from html
   const el = document.getElementById(`${id}`);
   el.remove();
+
+  // Update LS
+  saveToLS(movies);
 
   // Switch visible class
   if (movies.length === 0) {
@@ -107,6 +120,9 @@ const addMovieHandler = function () {
   // Clear the inputs
   clearInputs();
 
+  // Update LS
+  saveToLS(movies);
+
   // Console the movies array (test)
   console.log(movies);
 };
@@ -137,7 +153,7 @@ const reRender = function (renderArr) {
   }
 
   // Clear input
-  document.getElementById("filter-title").value = '';
+  document.getElementById("filter-title").value = "";
 
   // Switch visible class
   if (renderArr.length === 0) {
@@ -150,7 +166,6 @@ const reRender = function (renderArr) {
 
 /* -------------------------------- LISTENERS ------------------------------- */
 
-// Add movie
 addMovieBtn.addEventListener("click", addMovieHandler);
 searchBtn.addEventListener("click", searchMovieHandler);
 resetBtn.addEventListener("click", () => {
@@ -159,7 +174,6 @@ resetBtn.addEventListener("click", () => {
 
 // Basic reset
 reRender(movies);
-
 
 /* -------------------------------------------------------------------------- */
 /*                                    BUGS                                    */
