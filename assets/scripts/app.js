@@ -6,28 +6,51 @@ const fetchPostBtn = document.querySelector("#available-posts button");
 const postList = document.querySelector("ul");
 
 function sendHttpRequest(method, url, data) {
-  const promise = new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
+  // const promise = new Promise((resolve, reject) => {
+  // const xhr = new XMLHttpRequest();
 
-    xhr.open(method, url);
-    xhr.responseType = "json";
+  // xhr.open(method, url);
+  // xhr.responseType = "json";
 
-    xhr.onload = function () {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        resolve(xhr.response);
+  // xhr.onload = function () {
+  //   if (xhr.status >= 200 && xhr.status < 300) {
+  //     resolve(xhr.response);
+  //   } else {
+  //     reject(new Error("Something went wrong..."));
+  //   }
+  // };
+
+  // xhr.onerror = function () {
+  //   reject(new Error("Failed to send request."));
+  // };
+
+  // xhr.send(JSON.stringify(data));
+
+  // });
+
+  // return promise;
+
+  return fetch(url, {
+    method: method,
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        return response.json();
       } else {
-        reject(new Error("Something went wrong..."));
+        return response.json().then(errData => {
+          console.log(errData);
+          throw new Error('new error!')
+        })
       }
-    };
-
-    xhr.onerror = function () {
-      reject(new Error("Failed to send request."));
-    };
-
-    xhr.send(JSON.stringify(data));
-  });
-
-  return promise;
+    })
+    .catch((error) => {
+      console.log(error);
+      throw new Error('error!')
+    });
 }
 
 // function fetchPosts() {
@@ -48,7 +71,7 @@ async function fetchPosts() {
   try {
     const responseData = await sendHttpRequest(
       "GET",
-      "https://jsonplaceholder.typicode.com/pos" //error test (/pos(ts))
+      "https://jsonplaceholder.typicode.com/posts" //error test (/pos(ts))
     );
     const listOfPosts = responseData;
     for (const post of listOfPosts) {
