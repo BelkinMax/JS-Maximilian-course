@@ -1,3 +1,5 @@
+import { Modal } from "./UI/modal";
+
 class PlaceFinder {
   // btns & forms
   constructor() {
@@ -14,9 +16,12 @@ class PlaceFinder {
       alert("Location feature is not supported by your browser!");
       return;
     }
+    const modal = new Modal("loading-modal-content");
 
+    modal.show();
     navigator.geolocation.getCurrentPosition(
       (success) => {
+        modal.hide();
         const coordinates = {
           lat: success.coords.latitude,
           lng: success.coords.longitude,
@@ -24,6 +29,7 @@ class PlaceFinder {
         console.log(coordinates);
       },
       (fail) => {
+        modal.hide();
         alert("Could not locate you!");
       }
     );
